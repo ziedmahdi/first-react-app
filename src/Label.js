@@ -1,8 +1,10 @@
 import React, { Fragment } from "react"
 
 
-const Label = function () {
+const Label = function (props) {
     return (   
-        <div></div>
+        <div>{props.text}</div>
     )
 }
+
+export default Label;

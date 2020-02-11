@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, Component } from 'react';
+import { Input } from './Input'
 import './App.css';
+import Label from './Label';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//This code has been kept for reference
+// function App() {
+//   let [inputContent, setInputContent] = useState('Zied');
+
+//   const getText = function (input) {
+//     setInputContent(input.value);
+//     input.value = '';
+//   }
+
+//   return (
+//     <div>
+//       <Input onButtonClick={getText} />
+//       <Label text={inputContent} />
+//     </div>
+//   );
+// }
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputContent: props.intitalText
+    };
+
+    this.getText = this.getText.bind(this);
+  }
+
+  getText(input) {
+    this.setState({
+      inputContent: input.value
+    });
+
+    input.value = '';
+  }
+
+  render() {
+    return (
+      <div>
+        <Input onButtonClick={this.getText} />
+        <Label text={this.state.inputContent} />
+      </div>
+    );
+  }
 }
 
 export default App;

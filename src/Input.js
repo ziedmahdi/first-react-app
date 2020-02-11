@@ -1,11 +1,18 @@
-import React, { Fragment } from "react"
+import React, { Fragment, createRef } from "react"
 
 
-const Input = function () {
+export const Input = function (props) {
+    const handleButtonClick = () => {
+        if (props.onButtonClick) {
+            props.onButtonClick(textInput.current);
+        }
+    }
+
+    let textInput = createRef();
     return (
         <Fragment>
-            <input />
-            <button>Save</button>
+            <input ref={textInput} />
+            <button onClick={handleButtonClick}>Save</button>
         </Fragment>
     )
 }
